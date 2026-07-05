@@ -444,6 +444,7 @@ img.no-frame {
   width: 104%;
   margin-left: -4%;
   overflow: hidden;
+  direction: ltr; /* track must start from the left; page is rtl */
   background: #fff;
   border-block: 1px solid var(--line);
   box-shadow: var(--shadow-md);
@@ -453,49 +454,78 @@ img.no-frame {
 .logo-strip-title {
   margin: 0 0 14px;
   text-align: center;
+  direction: rtl;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--muted);
 }
 
-/* Infinite logo marquee (JS clones the logos to fill any width) */
+/* Infinite logo marquee — position driven by JS (requestAnimationFrame) */
 .logo-track {
   direction: ltr;
   display: flex;
   width: max-content;
+  will-change: transform;
+  --logo-gap: 20px;
 }
 
 .logo-group {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  animation: logo-scroll 34s linear infinite;
+  gap: var(--logo-gap);
+  padding-inline-end: var(--logo-gap);
 }
 
-.logo-track:hover .logo-group { animation-play-state: paused; }
+/* REVERT logo pills (2026-07-05):
+   .logo-pill { height:64px; padding:12px 24px; border-radius:18px; background:#f6f7fa; }
+   .logo-pill img { max-height:40px; width:auto; }
+   .pill-dark { background:var(--ink); }
+   .pill-photo { padding:0; overflow:hidden; }
+   .pill-photo img { max-height:64px; border-radius:18px; }
+   HTML: m1=pill-photo, boikov/moralforgood=plain pill, vaadbit=pill-dark */
 
 .logo-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  height: 56px;
-  margin-inline-start: 12px;
-  padding: 10px 22px;
-  border-radius: 16px;
-  background: #f6f7fa;
+  padding: 0;
+  background: none;
+  border-radius: 0;
 }
 
-.logo-pill img { max-height: 34px; width: auto; }
+.logo-pill img {
+  display: block;
+  width: auto;
+  height: 46px;
+}
 
-.pill-dark { background: var(--ink); }
-.pill-photo { padding: 0; overflow: hidden; }
-.pill-photo img { max-height: 56px; border-radius: 16px; }
+/* white logo on dark strip — only VaadBot */
+.pill-dark {
+  background: var(--ink);
+  border-radius: 14px;
+  padding: 10px 16px;
+}
 
-@keyframes logo-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+.pill-dark img { height: 38px; }
+
+/* square / compact marks (M1, Boikov, Moral for Good) */
+.pill-icon img {
+  height: 76px;
+  width: auto;
+}
+
+.pill-m1 img {
+  border-radius: 12px;
+}
+
+/* horizontal wordmarks */
+.pill-wide img {
+  height: 50px;
+  max-width: 240px;
+  object-fit: contain;
 }
 
 /* ---------- services (3 equal cards, layout from WebsiteClaude03) ---------- */
@@ -1024,7 +1054,7 @@ a.work-media:hover img { transform: scale(1.04); }
 
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; translate: none; transition: none; }
-  [data-float], .logo-group, .cap-row { animation: none !important; }
+  [data-float], .cap-row { animation: none !important; }
   html { scroll-behavior: auto; }
 }
 
