@@ -6,6 +6,55 @@
     document.documentElement.classList.add('no-anim');
   }
 
+  /* bind last two words with NBSP — skip forms and editable fields */
+  (function preventOrphans(root) {
+    var skipTags = {
+      SCRIPT: 1,
+      STYLE: 1,
+      NOSCRIPT: 1,
+      TEXTAREA: 1,
+      INPUT: 1,
+      SELECT: 1,
+      OPTION: 1,
+      FORM: 1
+    };
+
+    function inSkippedSubtree(node) {
+      var el = node.parentElement;
+      while (el) {
+        if (skipTags[el.tagName]) return true;
+        el = el.parentElement;
+      }
+      return false;
+    }
+
+    function bindLastTwoWords(text) {
+      var trimmed = text.replace(/\s+$/, '');
+      var trailing = text.slice(trimmed.length);
+      if (!trimmed || trimmed.indexOf(' ') === -1) return text;
+
+      var lastSpace = trimmed.lastIndexOf(' ');
+      var lastNbsp = trimmed.lastIndexOf('\u00A0');
+      if (lastNbsp > lastSpace) return text;
+
+      return trimmed.slice(0, lastSpace) + '\u00A0' + trimmed.slice(lastSpace + 1) + trailing;
+    }
+
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.nodeValue || !/\S/.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+        if (inSkippedSubtree(node)) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    var textNode;
+    while ((textNode = walker.nextNode())) {
+      var fixed = bindLastTwoWords(textNode.nodeValue);
+      if (fixed !== textNode.nodeValue) textNode.nodeValue = fixed;
+    }
+  })(document.body);
+
   /* header shadow on scroll */
   var header = document.querySelector('[data-header]');
   function onScroll() {
@@ -286,10 +335,60 @@
     });
   }
 
-  /* contact form — client-side success state.
-     TODO before launch: connect to email / CRM / automation. */
-  var form = document.querySelector('[data-contact-form]');
-  if (form) {
+  /* contact popup — open from CTA buttons */
+  var contactPopup = document.getElementById('contact-popup');
+  var contactPopupLastFocus = null;
+
+  function closeMobileMenu() {
+    if (toggle && links) {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  function openContactPopup() {
+    if (!contactPopup) return;
+    contactPopupLastFocus = document.activeElement;
+    contactPopup.hidden = false;
+    contactPopup.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('contact-popup-open');
+    closeMobileMenu();
+    var firstInput = contactPopup.querySelector('input:not([type="hidden"])');
+    if (firstInput) {
+      window.setTimeout(function () { firstInput.focus(); }, 0);
+    }
+  }
+
+  function closeContactPopup() {
+    if (!contactPopup) return;
+    contactPopup.hidden = true;
+    contactPopup.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('contact-popup-open');
+    if (contactPopupLastFocus && contactPopupLastFocus.focus) contactPopupLastFocus.focus();
+  }
+
+  if (contactPopup) {
+    var popupBackdrop = contactPopup.querySelector('.contact-popup-backdrop');
+    var popupClose = contactPopup.querySelector('.contact-popup-close');
+
+    document.querySelectorAll('[data-contact-open]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        openContactPopup();
+      });
+    });
+
+    if (popupBackdrop) popupBackdrop.addEventListener('click', closeContactPopup);
+    if (popupClose) popupClose.addEventListener('click', closeContactPopup);
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (contactPopup && !contactPopup.hidden) closeContactPopup();
+  });
+
+  function bindContactFormSuccess(form, fieldsSelector) {
+    if (!form) return;
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) {
@@ -297,9 +396,17 @@
         return;
       }
       var success = form.querySelector('.success-message');
-      form.querySelector('.form-grid').style.visibility = 'hidden';
+      var fields = form.querySelector(fieldsSelector);
+      if (fields) fields.style.visibility = 'hidden';
+      var submitBtn = form.querySelector('.btn-submit');
+      var note = form.querySelector('.form-note');
+      if (submitBtn) submitBtn.style.visibility = 'hidden';
+      if (note) note.style.visibility = 'hidden';
       success.hidden = false;
       success.focus();
     });
   }
+
+  bindContactFormSuccess(document.querySelector('[data-contact-form]'), '.form-grid');
+  bindContactFormSuccess(document.querySelector('[data-contact-popup-form]'), '.contact-popup-fields');
 })();

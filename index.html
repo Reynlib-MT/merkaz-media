@@ -35,7 +35,7 @@
           <a href="#process">תהליך</a>
         </div>
         <div class="nav-actions">
-          <a class="btn btn-primary btn-nav" href="#contact">דברו איתנו</a>
+          <a class="btn btn-primary btn-nav" href="#contact" data-contact-open>דברו איתנו</a>
           <button class="menu-toggle" type="button" aria-label="פתיחת תפריט" aria-expanded="false" data-menu-toggle>
             <span></span><span></span>
           </button>
@@ -50,14 +50,14 @@
         <div class="container hero-grid">
           <div class="hero-copy" data-reveal>
             <p class="eyebrow">פיתוח אפליקציות · מערכות Web · אתרים לעסקים</p>
-            <h1><span class="hl">האפליקציה שלכם</span> — מהרעיון ועד Google&nbsp;Play <span class="nowrap">ו-App&nbsp;Store</span></h1>
+            <h1><span class="hl">האפליקציה שלכם</span> — מהרעיון ועד <span class="hero-store-nowrap">Google&nbsp;Play <span class="hero-app-store">ו&#8209;App&nbsp;Store</span></span></h1>
             <ul class="slide-bullets">
               <li>אפיון, עיצוב, פיתוח והשקה — במסגרת אחת</li>
               <li>מוצרים עם תשלומים, תפקידים ומשתמשים</li>
               <li>מדברים ישירות עם מי שבונה</li>
             </ul>
             <div class="hero-actions">
-              <a class="btn btn-primary btn-lg" href="#contact">בואו נדבר על הפרויקט</a>
+              <a class="btn btn-primary btn-lg" href="#contact" data-contact-open>בואו נדבר על הפרויקט</a>
             </div>
           </div>
 
@@ -72,7 +72,7 @@
               <img src="assets/Works/mfg-login.jpg" alt="אפליקציית Moral for Good - מסך התחברות">
             </figure>
             <div class="float-chip chip-store" data-float="2">
-              <span class="dot"></span> באוויר ב-Google Play וב-App Store
+              <span class="dot"></span> באוויר ב-Google&nbsp;Play וב&#8209;App&nbsp;Store
             </div>
             <div class="float-chip chip-logo chip-logo-vaadbot" data-float="2">
               <img src="assets/logos/logo-vaadbot-color.png" alt="VaadBot">
@@ -140,14 +140,27 @@
                 <li>חיבור לפרסום, אנליטיקה ו-CRM</li>
                 <li>רואים מאיפה מגיעים לידים — ומשפרים</li>
               </ul>
-              <img class="service-img service-img-wide" src="assets/Works/moraltogether-site.png" alt="אתר MoralTogether שפיתחנו" loading="lazy">
+              <img class="service-img service-img-wide" src="assets/Works/moraltogether-site-small.jpg" alt="אתר MoralTogether שפיתחנו" loading="lazy">
             </article>
           </div>
 
           <div class="discovery-strip" data-reveal>
             <strong>אין אפיון? מגיעים עם רעיון:</strong>
             <div class="discovery-steps">
-              <span>רעיון</span><span class="arr">←</span><span>אפיון</span><span class="arr">←</span><span>מסכים</span><span class="arr">←</span><span>MVP</span>
+              <div class="discovery-snake-top">
+                <span>רעיון</span>
+                <span class="arr" aria-hidden="true">←</span>
+                <span class="discovery-snake-axis">
+                  <span>אפיון</span>
+                  <span class="arr arr-down" aria-hidden="true">↓</span>
+                </span>
+                <span class="arr arr-across" aria-hidden="true">←</span>
+              </div>
+              <div class="discovery-snake-bottom">
+                <span>מסכים</span>
+                <span class="arr" aria-hidden="true">←</span>
+                <span>MVP</span>
+              </div>
             </div>
           </div>
         </div>
@@ -179,7 +192,7 @@
 
         <div class="container">
           <div class="section-cta" data-reveal>
-            <a class="btn btn-dark" href="#contact">ספרו על הצורך של העסק</a>
+            <a class="btn btn-dark" href="#contact" data-contact-open>ספרו על הצורך של העסק</a>
           </div>
         </div>
       </section>
@@ -195,7 +208,7 @@
               <li>רואים מי שילם, מי בפיגור ומה נשאר לגבות</li>
               <li>קריאות שירות, ספקים והזמנת חדרים באפליקציה אחת</li>
             </ul>
-            <a class="btn btn-light" href="#contact">רוצים לבנות מערכת דומה?</a>
+            <a class="btn btn-light" href="#contact" data-contact-open>רוצים לבנות מערכת דומה?</a>
           </div>
           <div class="deep-screens" aria-label="מסכים מתוך VaadBot">
             <figure class="deep-phone dp-1 no-frame"><img src="assets/Works/vaadbot-account.png" alt="מצב חשבון ב-VaadBot" loading="lazy"></figure>
@@ -245,7 +258,7 @@
 
             <article class="work-card wc-wide" data-reveal>
               <div class="work-media wm-wide">
-                <img src="assets/Works/moraltogether-site.png" alt="דף הבית של MoralTogether" loading="lazy">
+                <img src="assets/Works/moraltogether-site-small.jpg" alt="דף הבית של MoralTogether" loading="lazy">
               </div>
               <div class="work-body">
                 <p><strong>MoralTogether</strong> — פלטפורמת קהילה בשלוש שפות</p>
@@ -291,7 +304,7 @@
               <li>אפיון, עיצוב ופיתוח — צוות אחד, בלי קבלני משנה</li>
               <li>אחרי ההשקה: תמיכה, אנליטיקה והמשך פיתוח</li>
             </ul>
-            <a class="btn btn-dark" href="#contact">בואו נדבר על הפרויקט</a>
+            <a class="btn btn-dark" href="#contact" data-contact-open>בואו נדבר על הפרויקט</a>
           </div>
         </div>
       </section>
@@ -388,21 +401,17 @@
           <form class="contact-form" data-contact-form novalidate>
             <div class="form-grid">
               <div class="form-field">
-                <label for="f-name">שם מלא</label>
-                <input id="f-name" name="name" autocomplete="name" required>
+                <input id="f-name" name="name" autocomplete="name" placeholder="שם מלא" aria-label="שם מלא" required>
               </div>
               <div class="form-field">
-                <label for="f-phone">טלפון</label>
-                <input id="f-phone" name="phone" type="tel" autocomplete="tel" required>
+                <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="טלפון" aria-label="טלפון" required>
               </div>
               <div class="form-field">
-                <label for="f-email">אימייל</label>
-                <input id="f-email" name="email" type="email" autocomplete="email">
+                <input id="f-email" name="email" type="email" autocomplete="email" placeholder="אימייל" aria-label="אימייל">
               </div>
               <div class="form-field">
-                <label for="f-need">מה צריך?</label>
-                <select id="f-need" name="need" required>
-                  <option value="">בחרו אפשרות</option>
+                <select id="f-need" name="need" required aria-label="מה צריך?">
+                  <option value="" selected hidden>מה צריך?</option>
                   <option>אפליקציה</option>
                   <option>מערכת Web</option>
                   <option>אתר עסקי</option>
@@ -412,8 +421,7 @@
                 </select>
               </div>
               <div class="form-field full">
-                <label for="f-msg">כמה מילים על הפרויקט</label>
-                <textarea id="f-msg" name="message" rows="4" placeholder="מה הבעיה או הרעיון? איפה זה עומד היום?" required></textarea>
+                <textarea id="f-msg" name="message" rows="4" placeholder="כמה מילים על הפרויקט" aria-label="כמה מילים על הפרויקט" required></textarea>
               </div>
               <div class="form-field full">
                 <button class="btn btn-primary btn-lg btn-submit" type="submit">בואו נדבר על הפרויקט</button>
@@ -428,6 +436,31 @@
         </div>
       </section>
     </main>
+
+    <div class="contact-popup" id="contact-popup" hidden aria-hidden="true">
+      <button type="button" class="contact-popup-backdrop" aria-label="סגירה"></button>
+      <div class="contact-popup-panel" role="dialog" aria-modal="true" aria-labelledby="contact-popup-title">
+        <button type="button" class="contact-popup-close" aria-label="סגירה">&times;</button>
+        <form class="contact-form contact-popup-form" data-contact-popup-form novalidate>
+          <h2 class="contact-popup-title" id="contact-popup-title">נחזור אליכם <span class="hl-accent">תוך יום עסקים</span></h2>
+          <p class="contact-popup-lead">שיחת היכרות קצרה — מספיק שם וטלפון.</p>
+          <div class="contact-popup-fields">
+            <div class="form-field">
+              <input id="popup-name" name="name" autocomplete="name" placeholder="שם מלא" aria-label="שם מלא" required>
+            </div>
+            <div class="form-field">
+              <input id="popup-phone" name="phone" type="tel" autocomplete="tel" placeholder="טלפון" aria-label="טלפון" required>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-lg btn-submit" type="submit">לתיאום שיחה</button>
+          <p class="form-note">אנחנו לא שולחים ספאם ולא מעבירים פרטים הלאה.</p>
+          <div class="success-message" tabindex="-1" hidden>
+            <strong>תודה, קיבלנו את הפרטים!</strong>
+            <span>נחזור אליכם בהקדם.</span>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <div class="work-lightbox" id="work-lightbox" hidden aria-hidden="true">
       <button type="button" class="work-lightbox-backdrop" aria-label="סגירה"></button>
