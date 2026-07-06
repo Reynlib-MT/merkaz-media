@@ -857,14 +857,6 @@ a.work-media:hover img { transform: scale(1.04); }
 
 body.work-lightbox-open { overflow: hidden; }
 
-@media (max-width: 640px) {
-  .work-lightbox-close {
-    top: auto;
-    bottom: calc(100% + 10px);
-    inset-inline-end: 0;
-  }
-}
-
 /* ---------- team + process ---------- */
 
 .team-grid {
@@ -1228,7 +1220,7 @@ body.work-lightbox-open { overflow: hidden; }
   .deep-screens { min-height: 430px; max-width: 560px; margin: 70px auto 0; width: 100%; }
 
   .wc-tall { grid-column: span 6; }
-  .wc-wide { grid-column: span 12; }
+  .wc-wide { grid-column: span 6; }
 
   .team-grid { grid-template-columns: 1fr; }
   .team-media { max-width: 340px; }
@@ -1239,6 +1231,47 @@ body.work-lightbox-open { overflow: hidden; }
 }
 
 @media (max-width: 768px) {
+  /* mobile typography: h1/h2 = 34px, body = 18px, labels = 16px */
+  h1, h2 {
+    font-size: 34px;
+    line-height: 1.12;
+  }
+
+  h3,
+  .service-card h3,
+  .process .step h3 {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  .slide-bullets,
+  .service-card .slide-bullets,
+  .work-body p,
+  .process .step p,
+  .discovery-strip,
+  .discovery-steps,
+  .team-badge strong,
+  .team-badge span,
+  .contact-person span,
+  .form-field label,
+  .form-field input,
+  .form-field select,
+  .form-field textarea,
+  .btn,
+  .btn-lg,
+  .nav-links,
+  .footer-inner,
+  .footer-nav,
+  .success-message span {
+    font-size: 18px;
+  }
+
+  .contact-person strong,
+  .success-message strong {
+    font-size: 20px;
+  }
+
   .nav { gap: 10px; padding-block: 10px; }
   .site-header .brand img { height: 46px; }
   .btn-nav { padding: 9px 14px; font-size: 16px; }
@@ -1271,50 +1304,58 @@ body.work-lightbox-open { overflow: hidden; }
 
   .hero { padding-top: 28px; }
   .hero-collage { min-height: 420px; }
+  .hero-actions { flex-direction: column; }
+  .btn-lg { width: 100%; }
   .shot-main { width: 46%; right: 8%; }
   .shot-side { width: 40%; }
   .shot-back { width: 36%; left: 28%; }
   .chip-store { bottom: 20px; right: 2%; }
+  .chip-logo-vaadbot { top: 100px; left: -2%; }
+  .chip-logo-m1 { top: 2px; right: 6%; padding: 4px; }
+  .chip-logo { padding: 6px 10px; }
+  .chip-logo img { height: 24px; }
+  .chip-logo-m1 img { height: 38px; width: 38px; }
+  .float-chip { font-size: 16px; padding: 8px 14px; }
 
   .logo-strip { margin-bottom: -30px; }
-  .logo-pill { height: 48px; padding: 8px 16px; }
-  .logo-pill img { max-height: 28px; }
+  .logo-strip-inner { padding: 12px 0 14px; }
+  .logo-strip-title { margin-bottom: 8px; }
+  .logo-pill { height: auto; padding: 5px 16px; }
+  .logo-pill img { max-height: 40px; height: auto; }
+  .pill-icon img { height: 48px; max-height: none; }
+  .pill-wide img { height: 42px; max-height: none; }
 
-  .deep-screens { min-height: 380px; margin-top: 90px; }
+  .deep-screens { min-height: 380px; max-width: 400px; margin-top: 90px; }
   .dp-2 { top: -80px; }
 
   .wc-tall { grid-column: span 12; }
+  .wc-wide { grid-column: span 12; }
 
-  .steps { grid-template-columns: 1fr; }
+  .steps { gap: 12px; }
 
-  .process-rail {
-    grid-template-columns: repeat(3, 1fr);
-    row-gap: 20px;
-    padding-top: 4px;
+  .process .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 18px 14px 16px;
   }
 
-  .process-rail::before { display: none; }
+  .process .step h3 { margin-top: 10px; }
 
-  .process-rail .step-num { width: 40px; height: 40px; font-size: 16px; }
+  .process .step p { text-align: center; }
 
-  .team-grid { grid-template-columns: 1fr; }
-  .team-media { max-width: 340px; }
+  .process-rail { display: none; }
+
+  .team-copy .eyebrow { margin-top: 13px; }
 
   .form-grid { grid-template-columns: 1fr; }
 
   .footer-inner { flex-direction: column; text-align: center; }
-}
 
-@media (max-width: 480px) {
-  .hero-collage { min-height: 360px; }
-  .btn-lg { width: 100%; }
-  .hero-actions { flex-direction: column; }
-  .btn-nav { padding: 8px 12px; font-size: 16px; }
-  .chip-logo-vaadbot { top: 68px; left: -2%; }
-  .chip-logo-m1 { top: 2px; right: 6%; }
-  .chip-logo img { height: 24px; }
-  .chip-logo-m1 img { height: 38px; width: 38px; }
-  .float-chip { font-size: 16px; padding: 8px 14px; }
-  .chip-logo { padding: 6px 10px; }
-  .chip-logo-m1 { padding: 4px; }
+  .work-lightbox-close {
+    top: auto;
+    bottom: calc(100% + 10px);
+    inset-inline-end: 0;
+  }
 }
