@@ -42,6 +42,24 @@
 
 html { scroll-behavior: smooth; overflow-x: clip; }
 
+/* ---------- colorful scrollbar (matches media.moraltogether.com) ---------- */
+/* WebKit / Chromium / Edge / Safari
+   NB: do NOT set `scrollbar-color` here — modern Chrome/Edge would then
+   ignore the ::-webkit rules below and render a flat single color. */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+/* rainbow gradient on the handle itself */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#0cf574, #00f2fe, #b100ff, #ff0844, #fce803);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(#00f2fe, #b100ff, #ff0844, #fce803, #0cf574);
+}
+
 body {
   margin: 0;
   font-family: var(--font);
@@ -891,13 +909,18 @@ body.work-lightbox-open { overflow: hidden; }
   position: relative;
   max-width: 420px;
   justify-self: center;
+  /* simple soft backdrop behind the cut-out photo */
+  background: linear-gradient(150deg, #eef1f9, #f6eef6);
+  border-radius: 30px;
+  padding-top: 32px; /* breathing room above the head */
+  box-shadow: var(--shadow-md);
 }
 
 .team-media > img {
-  border-radius: 30px;
-  transform: rotate(-2deg);
-  box-shadow: var(--shadow-lg);
-  border: 3px solid var(--ink);
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0 0 30px 30px;
 }
 
 .team-media::before {
@@ -1082,6 +1105,7 @@ body.work-lightbox-open { overflow: hidden; }
   object-fit: cover;
   object-position: top;
   border: 2px solid rgba(255, 255, 255, 0.7);
+  background: #eef1f9; /* fill behind the transparent cut-out */
 }
 
 .contact-person div { display: flex; flex-direction: column; line-height: 1.3; }
